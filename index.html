@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <h3>Javascript Basics</h3>
+    <button onclick="cleanAndCountCharacters()">
+        clean and count words
+    </button>
+    <body>
+    </body>
+</html>
+
+<style>
+    #rootContainer {
+        display: flex;
+
+    }
+    .root-container {
+        position: relative;
+    }
+
+    .root-container .header {
+        position: relative;
+    }
+
+    .root-container .main {
+        position: relative;
+    }
+
+    .root-container .footer {
+        position: relative;
+    }
+
+    .startups-container {
+        background-color: gray;
+    }
+
+    .red {
+        background-image: red;
+    }
+
+    .blue {
+        background-image: blue;
+    }
+
+    .gold {
+        background-image: gold;
+    }
+</style>
+
+<script>
+    var colors = ['red', 'blue', 'gold'];
+    var chicagoStartups = [
+        '  Interior   Define  ',
+        'Classkick',
+        'teaBOT  .$',
+        'Pritzker Group Venture Capital',
+        'Teln!yx !!',
+        'ShipBob ~~$$$',
+        'Hologram',
+        'Tovala    ',
+        '    MANOR',
+        'ShuttleCloud 999987',
+        'gtrot @@@@@',
+        'DealsGoRound ****',
+        ' Groovebug',
+        'Stage$$$Bloc',
+        'Shiftgig',
+        'ParkWhiz'
+    ];
+
+    function clearDocument() {
+        var rootDiv = document.getElementById('rootContainer');
+        if (rootDiv) {
+            while (rootDiv.hasChildNodes()) {
+                rootDiv.removeChild(rootDiv.lastChild);
+            }
+        }
+    }
+
+    function initDocument() {
+        clearDocument();
+        var rootDiv = document.createElement('div');
+        rootDiv.id = 'rootContainer';
+        var companyNamesContainer = document.createElement('div');
+        chicagoStartups.forEach( function(chicagoStartup, index) {
+            var childDiv = document.createElement('div');
+            var text = document.createTextNode(index.toString().concat(' .) ').concat(chicagoStartup));
+            childDiv.appendChild(text);
+            companyNamesContainer.appendChild(childDiv);
+        });
+        rootDiv.appendChild(companyNamesContainer);
+        document.body.appendChild(rootDiv);
+    }
+
+    function renderReversedElements() {
+        var reverseContainer = document.getElementById('reverseContainer');
+        var reversedChicagoStartups = [];
+        if (reverseContainer) {
+            if (reverseContainer.hasChildNodes()) {
+                while (reverseContainer.hasChildNodes()) {
+                    reversedChicagoStartups.push(reverseContainer.lastChild.innerHTML);
+                    reverseContainer.removeChild(reverseContainer.lastChild);
+                }
+                reversedChicagoStartups.forEach(function(chicagoStartup, index) {
+                    console.log(chicagoStartup);
+                    var childDiv = document.createElement('div');
+                    var text = document.createTextNode(chicagoStartup);
+                    childDiv.appendChild(text);
+                    reverseContainer.appendChild(childDiv);
+                });
+            }
+            else {
+                //TODO:: REPLACE [chicagoStartups.reverse()] WITH A FUNCTION CALLED "chicagoStartupsReverse"
+                chicagoStartups.reverse().forEach( function(startup) {
+                    var childDiv = document.createElement('div');
+                    var text = document.createTextNode(startup);
+                    childDiv.appendChild(text);
+                    reverseContainer.appendChild(childDiv);
+                });
+            }
+        }
+    }
+
+    function chicagoStartupsReverse() {
+        var reversedStartups = [];
+        /*
+            TODO: REVERSE THE CONTENTS OF THE ARRAY WITHOUT USING THE BUILT IN REVERSE METHOD
+                  RETURN THE REVERSED ARRAY
+
+            TIPS: 
+                1.  REVIEW JAVASCRIPT ARRAY DATA STRUCTURE AND THE BUILTIN METHODS PROVIDED TO ALL ARRAYS
+
+                2.  THIS IS A COMMON JOB INTERVIEW QUESTION, THAT SHOULD BE SOLVABLE BASED ON AN UNDERSTANDING OF
+                    DATA STRUTUCTURES REGARDLESS OF THE PROGRAMMING LANGUAGE
+        
+        */
+        return reversedStartups;
+    }
+
+    function cleanAndCountCharacters() {
+        console.log('CLEAN AND COUNT CHARACTERS');
+        /*
+            TODO: REMOVES ANY SPECIAL CHARACTERS FROM EACH COMPANY NAME AND
+              DISPLAYS THE NUMBER OF REMAINING CHARACTERS NEXT TO THE FULL WORD.
+              DONT FORGET TO REMOVE LEADING AND TRAILING WHITESPACES AS WELL
+        */
+
+    }
+    
+    function initReverse() {
+        var reverseContainer = document.createElement('div');
+        reverseContainer.id = 'reverseContainer';
+        var reverseBtn = document.createElement('button');
+        var btnText = document.createTextNode('Reverse');
+        reverseBtn.onclick = renderReversedElements;
+        reverseBtn.appendChild(btnText);
+        var reverseButtonContainer = document.createElement('div');
+        reverseButtonContainer.appendChild(reverseBtn);    
+        document.getElementById('rootContainer').appendChild(reverseButtonContainer);
+        document.getElementById('rootContainer').appendChild(reverseContainer);
+    }
+
+    function toggleDisplay() {
+        /*
+        TODO: REVIEW THE CODE IN THE PROVIDED REVERSE EXAMPLE, USE JAVASCRIPT TO ADD A CLICKABLE BUTTON 
+        CALLED "Toggle Display" ... WHEN THE USER CLICKS THE BUTTON, IT RENDERS THE DISPLAY OF THE COMPANY NAMES 
+        FROM VERTICAL, TO HORIZONTAL.
+        IF THE USER CLICKS THE TOGGLE BUTTON AGAIN THE NAMES SHOULD ONCE AGAIN BE DISPLAYED VERTICALLY.
+
+        TIPS: 
+            1.  MAKE SURE TO READ AND UNDERSTAND THE DIFFERENCE BETWEEN BLOCK ELEMENTS SUCH AS A DIV, 
+                AND INLINE ELEMENTS SUCH AS A SPAN.
+
+            2.  DIVIDE AND CONQUER.
+
+            3.  
+        */
+    }
+    
+    function run() {
+        initDocument();
+        initReverse();
+    }
+    run();
+    
+    var flags = {
+        displayInstructions: true
+    };
+
+    //TODO INVOKE THIS ANONYMOUS FUNCTION TO DISPLAY HOMEWORK INSTRUCTIONS IN THE CONSOLE
+    (function() {
+        if (flags.displayInstructions) {
+            console.log(`
+                            ASSUMPTIONS: !!! NO JQUERY !!! 
+                            Feel free to complete the exercises in whatever order you like.  
+                            Make sure to push your code to your own github repo as well as SUBMIT A ZIPFILE TO D2L.
+                            HOMEWORK IS DUE WEDNESDAYS AT MIDNIGHT NO EXCEPTIONS.
+                            dont forget to slack me the url to your github account as well.  
+
+                            You can earn extra credit by using the provided css classes in the style tag or additionally 
+                            you can pull in an external css library like bootstrap.  if you bring in bootstrap make sure to style
+                            the buttons using bootstraps built in button styling classes.
+
+                            Additionally, can earn extra credit by using an object to count the number of occurrences 
+                            of each character accross all startup names and style and display the results as part of the
+                            "cleanAndCountCharacters" function.
+                        `);
+        }
+        
+    })();
+
+</script>
